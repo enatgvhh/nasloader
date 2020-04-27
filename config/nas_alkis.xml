@@ -1,0 +1,11 @@
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql
+  http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
+  <JDBCConnId>inspire_db</JDBCConnId>
+  <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
+  <GMLSchema>../../appschemas/aaa_schema_6_0_1/aaa.xsd</GMLSchema>
+  <BLOBMapping>
+    <BlobTable>nas_alkis.gml_objects</BlobTable>
+    <FeatureTypeTable>nas_alkis.feature_types</FeatureTypeTable>
+  </BLOBMapping>
+</SQLFeatureStore>

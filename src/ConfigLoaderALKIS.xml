@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ConfigLoaderALKIS.xsd">
+	<sourcefile>E:\Data\ALKIS\ALKIS_HH_unzip</sourcefile>
+	<logfile>E:\logs\loggerAlkis.log</logfile>
+	<databaseconnection>
+		<dbname>test</dbname>
+		<user>tester</user>
+		<host>localhost</host>
+		<port>5432</port>
+		<password>tester</password>
+		<schema>nas_alkis</schema>
+	</databaseconnection>
+	<epsg>
+		<sourceurl>urn:adv:crs:ETRS89_UTM32</sourceurl>
+		<desturl>EPSG:25832</desturl>
+	</epsg>
+</ConfigObject>
