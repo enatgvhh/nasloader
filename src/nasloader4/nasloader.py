@@ -31,7 +31,6 @@ class NasLoader(object):
         self.conn = None
         self.cur = None
         self.__codeList = {}
-        #self.__geoTypes = ['gml:GeometryCollection','gml:MultiSurface','gml:MultiCurve','gml:MultiPoint','gml:MultiPolygon','gml:MultiLineString','gml:Surface','gml:Curve','gml:Point','gml:Polygon','gml:LineString']#SimpleFeature Spez., Multi for Single!
         
         try:
             self.conn = psycopg2.connect(self.__strConnection)
@@ -70,16 +69,7 @@ class NasLoader(object):
         """
         
         node = etree.fromstring(element.replace(self.__sourceEpsg,self.__descEpsg))
-                              
-        #extract geometry
-        """geomList = None
-        for geoType in self.__geoTypes:
-            expression = "//" + geoType
-            geomList = node.xpath(expression, namespaces={'gml': 'http://www.opengis.net/gml/3.2','xlink': 'http://www.w3.org/1999/xlink', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance', 'tn-ro': 'http://inspire.ec.europa.eu/schemas/tn-ro/4.0', 'net': 'http://inspire.ec.europa.eu/schemas/net/4.0', 'base': 'http://inspire.ec.europa.eu/schemas/base/3.3', 'tn': 'http://inspire.ec.europa.eu/schemas/tn/4.0', 'gco': 'http://www.isotc211.org/2005/gco','gmd': 'http://www.isotc211.org/2005/gmd','gn': 'http://inspire.ec.europa.eu/schemas/gn/4.0','o2i': 'http://list.smwa.sachsen.de/o2i/1.0'})
-            
-            if geomList:
-                break
-        """
+		
         geomList = node.xpath("//*[local-name()='position']")
         nameList = node.xpath("/*/*[local-name()='name']")
         name = None
@@ -111,14 +101,6 @@ class NasLoader(object):
                     
                     strSql = "INSERT INTO " + self.__dbSchema + ".gml_objects (gml_id,ft_type,binary_object) VALUES ('" + gmlId + "'," + str(intType) + ",'" + strBinary + "')"
                     
-                    """if geomList:
-                        geom = etree.tostring(geomList[0], encoding='unicode')
-                        #with PostGIS-Functions        
-                        postgisSql = "Box2D(ST_GeomFromGML('" + geom + "'))"           
-                        strSql = "INSERT INTO " + self.__dbSchema + ".gml_objects (gml_id,ft_type,binary_object,gml_bounded_by) VALUES ('" + gmlId + "'," + str(intType) + ",'" + strBinary + "'," + postgisSql + ")"
-                    else:
-                        strSql = "INSERT INTO " + self.__dbSchema + ".gml_objects (gml_id,ft_type,binary_object) VALUES ('" + gmlId + "'," + str(intType) + ",'" + strBinary + "')"
-                    """
                     try:                
                         self.cur.execute(strSql)
                         return(True)
@@ -128,8 +110,6 @@ class NasLoader(object):
                         self.__logger.error(message)
                         self.conn.rollback()
                         return(False)                   
-                        #self.closeConnection()
-                        #sys.exit()
                         
                     break
         else:
