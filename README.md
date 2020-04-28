@@ -50,7 +50,7 @@ from myThreads import multiprocessLoaderSIB
 if __name__ == "__main__":
     processAlkis = multiprocessLoaderAlkis.MultiprocessLoaderAlkis(r'E:\Data\ALKIS\ALKIS_HH_unzip', r'E:\logs\hash_alkis.txt')
     processAlkis.start()
-	processAtkis = multiprocessLoaderAtkis.MultiprocessLoaderAtkis(r'E:\Data\ATKIS\ATKIS_HH_unzip', r'E:\logs\hash_atkis.txt')
+    processAtkis = multiprocessLoaderAtkis.MultiprocessLoaderAtkis(r'E:\Data\ATKIS\ATKIS_HH_unzip', r'E:\logs\hash_atkis.txt')
     processAtkis.start()
     processSib = multiprocessLoaderSIB.MultiprocessLoaderSIB(r'E:\Data\hhsib\SIB_inspire\Inspire_HH.xml', r'E:\logs\hash_sib.txt')
     processSib.start()
