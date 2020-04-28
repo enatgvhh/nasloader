@@ -18,7 +18,7 @@ Das python-package 'nasloader4' und ein Client sind im Ordner [src](src) zu find
 
 
 ## deegree SQLFeatureStore
-Den Inhalt der NAS-Files laden wir in eine PostgreSQL/PostGIS Datenbank (*deegree SQLFeatureStore im BLOB-Modus*). In diesem FeatureStore wird ein xml-Objekt einfach in einem BLOB-Attribut gespeichert. Das [sql-File](config/nas_alkis.sql) zum Anlegen der Datenbanktabellen kann mit dem 'deegree-gml-tool' generiert werden. Das deegree Konfigurationsfile benötigen wir i.d.F. nicht, da wir die Datenbanktabellen nicht für einen Webservice, sondern nur als Zwischenspeicher verwenden werden und können.
+Den Inhalt der NAS-Files laden wir in eine PostgreSQL/PostGIS Datenbank (*deegree SQLFeatureStore im BLOB-Modus*). In diesem FeatureStore wird ein xml-Objekt einfach in einem BLOB-Attribut gespeichert. Das [sql-File](sql/nas_alkis.sql) zum Anlegen der Datenbanktabellen kann mit dem 'deegree-gml-tool' generiert werden. Das deegree Konfigurationsfile benötigen wir i.d.F. nicht, da wir die Datenbanktabellen nicht für einen Webservice, sondern nur als Zwischenspeicher verwenden werden und können.
 
 
 ## Python Multiprocessing
@@ -107,7 +107,7 @@ Und die FME Workbench können wir über einen python-subprocess starten…
 
 
 ## FME Transformation
-In der FME Workbench greifen wir mit einem PostGIS-Reader auf die Daten zu, decodieren den Inhalt des Attributes 'binary_object' (vgl. Abb. 1 bzw. FME Custom Transformer [GML_Objects_BLOB_Decoder](https://hub.safe.com/publishers/enatgvhh/transformers/gml_objects_blob_decoder) und extrahieren mit 'XMLXQueryExtractor' Transformern (*xpath/xquery*), die benötigten Informationen. Gegenüber der SQL-Welt hat das den großen Vorteil, dass wir alle AAA-Objektarten generisch verarbeiten können.
+In der FME Workbench greifen wir mit einem PostGIS-Reader auf die Daten zu, decodieren den Inhalt des Attributes 'binary_object' (*vgl. Abb. 1 bzw. [GML_Objects_BLOB_Decoder](https://hub.safe.com/publishers/enatgvhh/transformers/gml_objects_blob_decoder)*) und extrahieren mit 'XMLXQueryExtractor' Transformern (*xpath/xquery*), die benötigten Informationen. Gegenüber der SQL-Welt hat das den großen Vorteil, dass wir alle AAA-Objektarten generisch verarbeiten können.
 
 ![blob_decoder.jpg](img/blob_decoder.jpg)
 Abb. 1: PostGIS-Reader und BLOB-Dekodierung
